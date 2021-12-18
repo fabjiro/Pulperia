@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block HeadBlock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/manager.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animation.css') }}">
+{% endblock HeadBlock %}
+
+{% block BodyBlock %}
+    <div id="vm">
+        <div @click="btnadd" v-if="!state.panel" class="btn-add"></div>
+        <div class="panel animate__animated" v-if="state.panel">
+            <div @click="btnclose" class="btn-close"></div>
+            <div class="p-edit p" v-if="state.edit">
+                <input type="text" v-model="data.title" placeholder="Titulo" class="input-text">
+                <input @click="btnEditConfirm" type="button" class="input-btn" value="Editar">
+            </div>
+            <div class="p-add p" v-if="!state.edit">
+                <input type="text" v-model="data.title" placeholder="Titulo" class="input-text">
+                <input @click="btnaddConfirm" type="button" class="input-btn" value="Guardar">
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="cont-animation" v-if="state.lodCont">
+                <div class="bouncing-loader">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            <table v-else>
+                <thead>
+                    <tr>
+                        <th id="title">Title</th>
+                        <th id="option">Options</th>
+                        <th id="child">Childs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item, index) in listGeneral" :key="index">
+                        <td>[[item.title]]</td>
+                        <td>
+                            <input @click="btnEdit(item)" type="button" value="Editar" class="input-btn edit">
+                            <input @click="btndelete(item)" type="button" value="Eliminar" class="input-btn del">
+                        </td>
+                        <td>
+                            <div @click="btnchild(item)" class="btn-child"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            
+        </div>
+        
+        <div class="fondo" v-if="state.fondo">
+            <div class="bouncing-loader">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+{% endblock BodyBlock %}
+
+{% block ScriptBlock %}
+    <script src="{{ url_for('static', filename='js/manager.js') }}"></script>
+{% endblock ScriptBlock %}

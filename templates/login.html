@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block HeadBlock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock HeadBlock %}
+
+{% block BodyBlock %}
+    <div id="vm">
+        <div v-if="message.state" class="message">[[message.smg]]</div>
+        <div class="container">
+            <input v-model="data.user" class="input-text" type="text" placeholder="Username">
+            <input v-model="data.pass" class="input-text" type="password" placeholder="Password">
+            <input @click="send" class="input-btn" type="button" value="Acceder">
+        </div>
+    </div>
+   
+{% endblock BodyBlock %}
+
+{% block ScriptBlock %}
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+{% endblock ScriptBlock %}

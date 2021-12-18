@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    
+    <!-- cdns -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script> -->
+<!-- 
+    <script src="{{ url_for('static', filename='cdn/vue.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='cdn/axios.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='cdn/js.cookie.min.js') }}"></script> -->
+
+    {% block HeadBlock %}
+
+    {% endblock HeadBlock %}
+</head>
+
+<body>
+    {% block BodyBlock %}
+
+    {% endblock BodyBlock %}
+</body>
+{% block ScriptBlock %}
+{% endblock ScriptBlock %}
+
+</html>

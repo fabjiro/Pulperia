@@ -1,0 +1,56 @@
+.container {
+  width: 40%;
+  margin: 10% auto;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.container .input-text {
+  margin-bottom: 20px;
+}
+.container .input-btn {
+  width: 50%;
+}
+.container .input-btn:hover {
+  background: #3e8e7e;
+  color: white;
+}
+
+.message {
+  width: 70%;
+  padding: 12px 10px;
+  background: #f05454;
+  color: white;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.5rem;
+  position: absolute;
+  margin: auto;
+  display: block;
+  left: 0;
+  right: 0;
+  top: 20px;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 414px) {
+  .container {
+    width: 90%;
+    height: 400px;
+    margin: 25% auto;
+  }
+}
+@media only screen and (min-width: 415px) and (max-width: 1024px) {
+  .container {
+    width: 70%;
+    height: 600px;
+    margin: 25% auto;
+  }
+
+  .message {
+    top: 40px;
+  }
+}
+
+/*# sourceMappingURL=login.css.map */

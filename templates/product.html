@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block HeadBlock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/product.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animation.css') }}">
+
+{% endblock HeadBlock %}
+
+{% block BodyBlock %}
+    <div id="vm">
+        <h2 class="title">[[Pgeneral.title]]</h2>
+        <div v-if="!state.panel" @click="btnadd" class="btn-add"></div>
+        <div class="panel animate__animated" v-if="state.panel">
+            
+            <div class="p p-edit" v-if="state.edit">
+                <input v-model="data.title" placeholder="Titulo" class="input-text">
+                <div class="viewer" :style="{
+                    'background-image': 'url(' + data.urlimage + ')'
+                }">
+                <input accept="image/png" @change="newFile" id="input-file" type="file">
+                </div>
+                <input @click="editbtnconfirm" type="button" value="Editar" class="input-btn">
+            </div>
+            <div class="p" v-if="!state.edit">
+                <input v-model="data.title" placeholder="Titulo" class="input-text">
+                <div class="viewer" :style="{
+                    'background-image': 'url(' + data.urlimage + ')'
+                }">
+                <input id="input-file" accept="image/png" @change="newFile" type="file">
+                </div>
+                <input @click="btnsaved" type="button" value="Guardar" class="input-btn">
+            </div>
+            <div @click="btnclose" class="btn-close"></div>
+        </div>
+        <div class="container">
+            <div class="cont-animation" v-if="state.lodCont">
+                <div class="bouncing-loader">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+
+            <table v-else>
+                <thead>
+                    <tr>
+                        <th id="title">Title</th>
+                        <th id="option">Options</th>
+                        <th id="Images">Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item, index) in listSpecific" :key="index">
+                        <td>[[item.title]]</td>
+                        <td>
+                            <input @click="btnEdit(item)" type="button" value="Editar" class="input-btn edit">
+                            <input @click="btndelete(item)" type="button" value="Eliminar" class="input-btn del">
+                        </td>
+                        <td>
+                            <div class="view-img" :style="{
+                                'background-image': 'url(' + item.urlimage + ')'
+                            }"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="fondo" v-if="state.fondo">
+            <div class="bouncing-loader">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+{% endblock BodyBlock %}
+
+{% block ScriptBlock %}
+    <script src="{{ url_for('static', filename='js/product.js') }}"></script>
+{% endblock ScriptBlock %}

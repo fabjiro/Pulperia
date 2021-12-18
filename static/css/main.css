@@ -1,0 +1,59 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Varela Round", sans-serif;
+  outline: none;
+  user-select: none;
+}
+
+.input-text {
+  width: 70%;
+  border-radius: 8px;
+  color: grey;
+  border: none;
+  background: #f1f1f0;
+  padding: 15px 10px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.input-text:focus {
+  border: 2px solid #3e8e7e;
+}
+
+.input-btn {
+  border-radius: 8px;
+  color: grey;
+  border: none;
+  padding: 15px 10px;
+  font-size: 1.2rem;
+  text-align: center;
+  transition: ease-in-out 0.3s;
+}
+
+.container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+body {
+  background-color: #f1f1f0;
+}
+
+.fondo {
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background: rgba(1, 1, 1, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fondo .bouncing-loader > div {
+  background: white;
+}
+
+/*# sourceMappingURL=main.css.map */
