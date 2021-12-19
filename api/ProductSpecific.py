@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify, current_app
 from werkzeug.utils import secure_filename
 from bson.objectid import ObjectId
 from functions import compreImagen, getSpecific
-from uploadImage import UploadImage
+from uploadImage import UploadImage, DeleteImage
 from listener import listener
 from db import mongo
 from os import remove, path
@@ -26,8 +26,14 @@ def editspecific():
         # comprimiendo la imagen
         newfilename = compreImagen(filename)
 
-        urlimage = UploadImage(path=current_app.config['UPLOAD_FOLDER']+newfilename, name=newfilename)
+        result = UploadImage(path=current_app.config['UPLOAD_FOLDER']+newfilename, name=newfilename)
         
+        urlimage = result['link']
+        resultp = mongo.db.client.pulperia.ProductSpecific.find_one({
+            '_id': ObjectId(oid= request.form['id'])
+        })
+        
+        DeleteImage(name=resultp['cloudimagename'])
         remove(current_app.config['UPLOAD_FOLDER'] + filename)
         remove(current_app.config['UPLOAD_FOLDER'] + newfilename)
         
@@ -37,6 +43,7 @@ def editspecific():
             '$set':{
                 'Title': request.form['title'],
                 'urlImage': urlimage,
+                'cloudimagename': result['cloudfilename']
             }
         })
     elif(request.form['title']):
@@ -67,13 +74,15 @@ def addspecific():
         
             # comprimiendo la imagen
             newfilename = compreImagen(filename)
-
-            urlimage = UploadImage(path=current_app.config['UPLOAD_FOLDER']+newfilename, name=newfilename)
+            
+            result = UploadImage(path=current_app.config['UPLOAD_FOLDER']+newfilename, name=newfilename)
+            urlimage = result['link']
 
             mongo.db.client.pulperia.ProductSpecific.insert_one({
                 'Title': request.form['title'],
                 '_idGeneral': ObjectId(oid=request.form['idgeneral']),
                 'urlImage': urlimage,
+                'cloudimagename': result['cloudfilename']
             })
             remove(current_app.config['UPLOAD_FOLDER'] + filename)
             remove(current_app.config['UPLOAD_FOLDER'] + newfilename)
@@ -96,9 +105,16 @@ def addspecific():
 @apiS.route('/delspecific', methods=  ["POST"])
 def delspecific():
     try:
+        result = mongo.db.client.pulperia.ProductSpecific.find_one({
+                '_id': ObjectId(oid=request.json['id'])
+        })
+        
         mongo.db.client.pulperia.ProductSpecific.delete_one(filter = {
             '_id': ObjectId(oid=request.json['id'])
         })
+
+        DeleteImage(name=result['cloudimagename'])
+
         listener("productSpecific")
         return { 
             "status": 200,
