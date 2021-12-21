@@ -11,7 +11,7 @@ const vm = new Vue({
   methods: {
     send() {
       axios
-        .post("/api/access", {
+        .post("/api/accessadmin", {
           username: this.data.user,
           password: this.data.pass,
         })

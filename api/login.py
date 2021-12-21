@@ -6,7 +6,7 @@ from db import mongo
 login = Blueprint("login", __name__)
 
 
-@login.route('/access', methods = ["POST"])
+@login.route('/accessadmin', methods = ["POST"])
 def access():
     try:
         if request.json['username'] and request.json['password']:
@@ -25,4 +25,3 @@ def access():
             return jsonify(smg = "rellene los campos", status = 404)
     except:
         return jsonify(smg = "intente nuevamente", status = 404)
-    
