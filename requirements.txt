@@ -12,9 +12,11 @@ Jinja2==3.0.3
 MarkupSafe==2.0.1
 Pillow==8.4.0
 ply==3.11
+py3dns==3.2.1
 pymongo==4.0.1
 requests==2.26.0
 six==1.16.0
 stone==3.2.1
 urllib3==1.26.7
+validate-email-address==1
 Werkzeug==2.0.2
