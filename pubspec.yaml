@@ -1,0 +1,68 @@
+name: pulperia
+description: A new Flutter project.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
+  sizer: ^2.0.15
+  shimmer: ^2.0.0
+  google_fonts: ^2.1.0
+  iconsax: ^0.0.8
+  dio: ^4.0.0
+  dio_cookie_manager: ^2.0.0
+  sqflite: ^2.0.0+3
+  path_provider: ^2.0.2
+  path: ^1.8.0
+  shared_preferences: ^2.0.7
+  flutter_native_splash: ^1.2.3
+  flutter_svg: ^0.22.0
+  animate_do: ^2.0.0
+  scrollable_positioned_list: ^0.2.2
+  sliding_sheet: ^0.5.2
+  flutter_rating_bar: ^4.0.0
+  google_maps_flutter: ^2.0.9
+  flutter_polyline_points: ^1.0.0
+  location: ^4.3.0
+  lottie: ^1.2.1
+  otp_pin_field: ^1.0.0
+  rounded_loading_button: ^2.0.9
+  provider: ^6.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter_native_splash:
+  android: true
+  ios: true
+  color: "#334756"
+
+  image: assets/png/LogoSplash2.png
+  fullscreen: true
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/png/
+    - assets/blob/
+    - assets/svg/
+    - assets/lottie/
