@@ -1,6 +1,8 @@
 import json
 from datetime import datetime
 from decimal import Decimal
+from db import mongo
+from bson.objectid import ObjectId
 
 def listener(product: str):
     jsondata = jsonRead()
@@ -36,15 +38,23 @@ def getCode(product: str):
 
 # read data
 def jsonRead():
-    jsondata = {}
-    with open('file.json', 'r') as file:
-        jsondata = (json.load(file))
-        file.close()
-    return jsondata
+    result = mongo.db.client.pulperia.state.find_one(ObjectId(oid="61da52dad9df26c85e98b02e"))
+
+
+    return {
+        'fecha': result['fecha'],
+        'productGeneral': result['productGeneral'],
+        'productSpecific': result['productSpecific'],
+    }
 
 
 # write data
 def jsonWrite(dataJson):
+    mongo.db.client.pulperia.state.update_one(filter = {
+        '_id':ObjectId(oid="61da52dad9df26c85e98b02e")
+    }, update = {
+        "$set": dataJson}
+    )
     with open('file.json', 'w') as file:
         json.dump(dataJson, file)
         file.close()
