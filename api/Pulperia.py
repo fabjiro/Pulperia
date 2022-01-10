@@ -60,13 +60,6 @@ def registerpulperia():
 
     elif('product' and 'data' in request.json):
         try:
-            userdata = mongo.db.client.pulperia.User.insert_one({
-                'user': request.json['data']['user'],
-                'email': request.json['data']['email'],
-                'password': generate_password_hash(request.json['data']['password']),
-                'pulperia': True
-            })
-
             pulpdata = mongo.db.client.pulperia.Pulperias.insert_one({
                 'Title': request.json['data']['title'],
                 'coordenadas':{
@@ -78,7 +71,13 @@ def registerpulperia():
                     'idspecific': element['idspecific'],
                     
                 } for element in request.json['product']],
-                '_iduser': userdata.inserted_id
+            })
+
+            userdata = mongo.db.client.pulperia.User.insert_one({
+                'user': request.json['data']['user'],
+                'email': request.json['data']['email'],
+                'password': generate_password_hash(request.json['data']['password']),
+                'pulperia': pulpdata.inserted_id
             })
             
             return {

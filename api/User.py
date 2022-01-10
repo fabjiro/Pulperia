@@ -46,8 +46,15 @@ def login():
             })
 
             if user:
-
                 if(check_password_hash(user['password'], request.json['password'])):
+
+                    if 'pulperia' in user:
+                        return {
+                            'status': 200,
+                            'token': str(user['_id']),
+                            'user': user['user'],
+                            'pulperia': str(user['pulperia']),
+                        }
                     return {
                         'status': 200,
                         'token': str(user['_id']),
