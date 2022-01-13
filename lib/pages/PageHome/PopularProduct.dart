@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:pulperia/models/ProductSpecific.dart';
-import 'package:pulperia/themeApp.dart';
 import 'package:sizer/sizer.dart';
 
 class PopularProduct extends StatelessWidget {
@@ -27,9 +26,13 @@ class PopularProduct extends StatelessWidget {
             child: Text(
               "Populares",
               style: TextStyle(
-                color: ThemeApp.colorTitle,
-                fontSize: 18.sp,
-                fontWeight: FontWeight.w500,
+                color: Theme.of(context)
+                    .textTheme
+                    .bodyText1!
+                    .color!
+                    .withOpacity(.75),
+                fontSize: 17.5.sp,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ),
@@ -53,7 +56,7 @@ class PopularProduct extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    color: ThemeApp.colorCard,
+                    color: Theme.of(context).cardColor,
                     margin: EdgeInsets.only(left: 3.w),
                     child: Container(
                       width: 45.w,
@@ -75,7 +78,11 @@ class PopularProduct extends StatelessWidget {
                             Text(
                               listSpecific[index].title,
                               style: TextStyle(
-                                color: ThemeApp.colorSubTitle,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1!
+                                    .color!
+                                    .withOpacity(.9),
                                 fontWeight: FontWeight.w500,
                                 fontSize: 17.sp,
                               ),

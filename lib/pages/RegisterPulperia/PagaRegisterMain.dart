@@ -5,7 +5,6 @@ import 'package:pulperia/data.dart';
 import 'package:pulperia/dio.dart';
 import 'package:pulperia/pages/PageLogin/textfielCustom.dart';
 import 'package:pulperia/snackMessage.dart';
-import 'package:pulperia/themeApp.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:sizer/sizer.dart';
 
@@ -27,6 +26,9 @@ class PageRegisterMain extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
+    final textColorPrymari = Theme.of(context).textTheme.bodyText1!.color;
+    final textColorSecundary = Theme.of(context).textTheme.bodyText2!.color;
+
     return Container(
       height: 100.h,
       width: 100.w,
@@ -49,14 +51,14 @@ class PageRegisterMain extends StatelessWidget {
                     Icon(
                       Iconsax.arrow_left_2,
                       size: 25.sp,
-                      color: ThemeApp.colorTitle,
+                      color: textColorPrymari!.withOpacity(.8),
                     ),
                     Text(
                       "Registrar",
                       style: TextStyle(
                         fontSize: 20.sp,
                         fontWeight: FontWeight.w400,
-                        color: ThemeApp.colorTitle,
+                        color: textColorPrymari.withOpacity(.8),
                       ),
                     )
                   ],
@@ -75,7 +77,7 @@ class PageRegisterMain extends StatelessWidget {
                   "Regístrese con una de las siguientes opciones.",
                   style: TextStyle(
                     fontSize: 12.sp,
-                    color: ThemeApp.colorTitle,
+                    color: textColorPrymari.withOpacity(.8),
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -110,7 +112,7 @@ class PageRegisterMain extends StatelessWidget {
               "-- ó --",
               style: TextStyle(
                 fontSize: 18.sp,
-                color: ThemeApp.colorTitle,
+                color: textColorPrymari.withOpacity(.8),
               ),
             ),
             SizedBox(
@@ -140,7 +142,7 @@ class PageRegisterMain extends StatelessWidget {
             ),
             // btn registrar
             RoundedLoadingButton(
-              color: ThemeApp.colorPrimario.withOpacity(.8),
+              color: Theme.of(context).primaryColor.withOpacity(.8),
               width: 18.w,
               height: 8.h,
               borderRadius: 50,
@@ -148,7 +150,7 @@ class PageRegisterMain extends StatelessWidget {
               child: Icon(
                 Iconsax.arrow_right_2,
                 size: 30.sp,
-                color: ThemeApp.colorTitleInvert,
+                color: textColorSecundary,
               ),
               controller: _btnController,
               onPressed: () async {
@@ -192,7 +194,7 @@ class PageRegisterMain extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 13.sp,
                     fontWeight: FontWeight.w400,
-                    color: ThemeApp.colorTitle,
+                    color: textColorPrymari.withOpacity(.8),
                   ),
                 ),
               ),

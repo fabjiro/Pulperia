@@ -129,7 +129,7 @@ Future<bool> initData() async {
             element.addAll({
               'imagen': await networkImageToBase64(element['urlimage']),
             });
-            await BaseData().inserProduct(ProductSpecific.fromMap(element));
+            BaseData().inserProduct(ProductSpecific.fromMap(element));
           }
           PreferenceShared().setBkey('firstInit', true);
 

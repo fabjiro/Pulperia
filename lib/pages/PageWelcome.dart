@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pulperia/pages/Components/btn.dart';
-import 'package:pulperia/themeApp.dart';
 import 'package:sizer/sizer.dart';
 
 class PageWelcome extends StatefulWidget {
@@ -41,7 +40,7 @@ class _PageWelcomeState extends State<PageWelcome> {
                 child: Text(
                   "Seleccione un perfil para su cuenta",
                   style: TextStyle(
-                    color: ThemeApp.colorPrimario,
+                    color: Theme.of(context).primaryColor,
                     fontSize: 20.sp,
                     fontWeight: FontWeight.bold,
                   ),
@@ -56,17 +55,17 @@ class _PageWelcomeState extends State<PageWelcome> {
                 title: "Usuario",
                 icono: Iconsax.user,
                 ontap: () => Navigator.pushNamed(context, 'register'),
-                textcolor: ThemeApp.colorTitle,
+                textcolor: Theme.of(context).textTheme.bodyText1!.color!,
               ),
               SizedBox(
                 height: 2.h,
               ),
               CustomBtn(
-                background: ThemeApp.colorPrimario.withOpacity(.8),
+                background: Theme.of(context).primaryColor.withOpacity(.9),
                 title: "Pulperia",
                 icono: Iconsax.home_2,
                 ontap: () => Navigator.pushNamed(context, 'registerpulperia'),
-                textcolor: ThemeApp.colorTitleInvert,
+                textcolor: Theme.of(context).textTheme.bodyText2!.color!,
               ),
               SizedBox(
                 height: 2.h,
@@ -81,7 +80,11 @@ class _PageWelcomeState extends State<PageWelcome> {
                     style: TextStyle(
                       fontSize: 13.sp,
                       fontWeight: FontWeight.w600,
-                      color: ThemeApp.colorTitle,
+                      color: Theme.of(context)
+                          .textTheme
+                          .bodyText1!
+                          .color!
+                          .withOpacity(.8),
                     ),
                   ),
                 ),

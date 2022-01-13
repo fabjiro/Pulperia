@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pulperia/sharedpreferences.dart';
-import 'package:pulperia/themeApp.dart';
 import 'package:sizer/sizer.dart';
 
 void modalChageMap(BuildContext context, Function(int indexmap) callSetstate) {
@@ -44,7 +43,7 @@ class _ContainerMapStylesState extends State<ContainerMapStyles> {
           topLeft: Radius.circular(12),
           topRight: Radius.circular(12),
         ),
-        color: ThemeApp.colorFondo,
+        color: Theme.of(context).scaffoldBackgroundColor,
       ),
       padding: EdgeInsets.symmetric(
         vertical: 5,
@@ -57,7 +56,7 @@ class _ContainerMapStylesState extends State<ContainerMapStyles> {
             "Estilos",
             style: TextStyle(
               fontSize: 18.sp,
-              color: ThemeApp.colorPrimario,
+              color: Theme.of(context).primaryColor,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -73,8 +72,9 @@ class _ContainerMapStylesState extends State<ContainerMapStyles> {
                   PreferenceShared.pref!.setInt('indexmapstyle', 0);
                   setState(() => {});
                 },
-                color:
-                    indexMap == 0 ? ThemeApp.colorPrimario : Colors.transparent,
+                color: indexMap == 0
+                    ? Theme.of(context).primaryColor
+                    : Colors.transparent,
               ),
               SizedBox(
                 width: 10,
@@ -87,8 +87,9 @@ class _ContainerMapStylesState extends State<ContainerMapStyles> {
 
                   setState(() => {});
                 },
-                color:
-                    indexMap == 1 ? ThemeApp.colorPrimario : Colors.transparent,
+                color: indexMap == 1
+                    ? Theme.of(context).primaryColor
+                    : Colors.transparent,
               ),
             ],
           ),
@@ -135,7 +136,13 @@ class StyleMap extends StatelessWidget {
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withOpacity(0.9),
+                  color: (Theme.of(context).brightness == Brightness.dark)
+                      ? Theme.of(context)
+                          .textTheme
+                          .bodyText1!
+                          .color!
+                          .withOpacity(0.4)
+                      : Colors.transparent,
                   spreadRadius: 1,
                   blurRadius: 1,
                   offset: Offset(0, 1), // changes position of shadow

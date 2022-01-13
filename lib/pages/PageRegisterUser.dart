@@ -4,7 +4,6 @@ import 'package:iconsax/iconsax.dart';
 import 'package:pulperia/dio.dart';
 import 'package:pulperia/pages/PageLogin/textfielCustom.dart';
 import 'package:pulperia/snackMessage.dart';
-import 'package:pulperia/themeApp.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:sizer/sizer.dart';
 
@@ -26,6 +25,9 @@ class _PageRegisterUserState extends State<PageRegisterUser> {
 
   @override
   Widget build(BuildContext context) {
+    final textColorPrymari = Theme.of(context).textTheme.bodyText1!.color;
+    final textColorSecundary = Theme.of(context).textTheme.bodyText2!.color;
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -50,14 +52,14 @@ class _PageRegisterUserState extends State<PageRegisterUser> {
                         Icon(
                           Iconsax.arrow_left_2,
                           size: 25.sp,
-                          color: ThemeApp.colorTitle,
+                          color: textColorPrymari!.withOpacity(.8),
                         ),
                         Text(
                           "Registrar",
                           style: TextStyle(
                             fontSize: 20.sp,
                             fontWeight: FontWeight.w400,
-                            color: ThemeApp.colorTitle,
+                            color: textColorPrymari.withOpacity(.8),
                           ),
                         )
                       ],
@@ -76,7 +78,7 @@ class _PageRegisterUserState extends State<PageRegisterUser> {
                       "Regístrese con una de las siguientes opciones.",
                       style: TextStyle(
                         fontSize: 12.sp,
-                        color: ThemeApp.colorTitle,
+                        color: textColorPrymari.withOpacity(.8),
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -111,7 +113,7 @@ class _PageRegisterUserState extends State<PageRegisterUser> {
                   "-- ó --",
                   style: TextStyle(
                     fontSize: 18.sp,
-                    color: ThemeApp.colorTitle,
+                    color: textColorPrymari.withOpacity(.8),
                   ),
                 ),
                 SizedBox(
@@ -141,7 +143,7 @@ class _PageRegisterUserState extends State<PageRegisterUser> {
                 ),
                 // btn registrar
                 RoundedLoadingButton(
-                  color: ThemeApp.colorPrimario.withOpacity(.8),
+                  color: Theme.of(context).primaryColor.withOpacity(.8),
                   width: 60.w,
                   height: 8.h,
                   borderRadius: 12,
@@ -149,7 +151,7 @@ class _PageRegisterUserState extends State<PageRegisterUser> {
                   child: Text(
                     'Registrar',
                     style: TextStyle(
-                      color: ThemeApp.colorTitleInvert,
+                      color: textColorSecundary,
                       fontSize: 17.sp,
                       fontWeight: FontWeight.bold,
                     ),
@@ -191,7 +193,7 @@ class _PageRegisterUserState extends State<PageRegisterUser> {
                       style: TextStyle(
                         fontSize: 13.sp,
                         fontWeight: FontWeight.w400,
-                        color: ThemeApp.colorTitle,
+                        color: textColorPrymari.withOpacity(.9),
                       ),
                     ),
                   ),

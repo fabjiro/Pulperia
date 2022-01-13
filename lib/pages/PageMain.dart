@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:pulperia/DataBase.dart';
 import 'package:pulperia/models/ReactData.dart';
@@ -12,7 +14,6 @@ import 'package:pulperia/pages/PageMain/initData.dart';
 import 'package:pulperia/pages/PageMap.dart';
 import 'package:pulperia/pages/PageNoInternet.dart';
 import 'package:pulperia/sharedpreferences.dart';
-import 'package:pulperia/themeApp.dart';
 import 'package:sizer/sizer.dart';
 import 'package:provider/provider.dart';
 
@@ -49,6 +50,11 @@ class PageMainState extends State<PageMain> with AutomaticKeepAliveClientMixin {
   Widget build(BuildContext context) {
     super.build(context);
     reacdata = context.read<ReacData>();
+    SystemChrome.setSystemUIOverlayStyle(
+      (Theme.of(context).brightness == Brightness.dark)
+          ? SystemUiOverlayStyle.dark
+          : SystemUiOverlayStyle.light,
+    );
     return FutureBuilder(
       future: _noreload,
       builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
@@ -65,6 +71,10 @@ class PageMainState extends State<PageMain> with AutomaticKeepAliveClientMixin {
             reacdata.setuser = PreferenceShared.pref!.containsKey('user')
                 ? PreferenceShared.pref!.getString('user')!
                 : 'null';
+            reacdata.setidpulperia =
+                PreferenceShared.pref!.containsKey('idpulperia')
+                    ? PreferenceShared.pref!.getString('idpulperia')!
+                    : 'null';
             // ------------------
             return Scaffold(
               resizeToAvoidBottomInset: false,
@@ -104,9 +114,9 @@ class PageMainState extends State<PageMain> with AutomaticKeepAliveClientMixin {
                   shape: CircularNotchedRectangle(),
                   notchMargin: 10,
                   child: Container(
-                    color: ThemeApp.colorBootomNavBar == Colors.white
+                    color: Theme.of(context).bottomAppBarColor == Colors.white
                         ? null
-                        : ThemeApp.colorBootomNavBar.withOpacity(.9),
+                        : Theme.of(context).bottomAppBarColor.withOpacity(.9),
                     height: 8.h,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,

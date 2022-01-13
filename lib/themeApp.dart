@@ -1,33 +1,34 @@
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:pulperia/pages/PageMap/utils.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-// ignore: non_constant_identifier_names
-final ThemeApp = LightMode();
+class MyThemes {
+  static final darkTheme = ThemeData(
+    brightness: Brightness.light,
+    scaffoldBackgroundColor: Color(0XFF334756),
+    primaryColor: Color(0XFFFCC434),
+    accentColor: Color(0XFFFCC434),
+    cardColor: Color(0XFF506D84),
+    bottomAppBarColor: Color(0XFF082032),
+    textTheme: TextTheme(
+      bodyText1: GoogleFonts.varelaRound(color: Colors.white),
+      bodyText2: GoogleFonts.varelaRound(color: Colors.black),
+    ),
+    visualDensity: VisualDensity.adaptivePlatformDensity,
+  );
 
-class DarkMode {
-  final colorPrimario = Color(0XFFFCC434);
-  final colorBrightness = Brightness.light;
-  final colorFondo = Color(0XFF334756);
-  final colorCard = Color(0XFF506D84);
-  final colorTitle = Color(0XFFFFFFFF);
-  final colorTitleInvert = Colors.black;
-
-  final colorSubTitle = Color(0XFFFFFFFF);
-  final colorBootomNavBar = Color(0XFF082032);
-
-  final String mapStyle = Utils.mapDark;
-}
-
-class LightMode {
-  final colorBrightness = Brightness.dark;
-  final colorPrimario = Color(0XFF5089C6);
-  final colorFondo = Color(0XFFf1f1f0);
-  final colorCard = Colors.white;
-  final colorTitle = Colors.black;
-  final colorTitleInvert = Colors.white;
-  final colorSubTitle = Colors.black.withOpacity(.5);
-  final colorBootomNavBar = Colors.white;
-
-  final String mapStyle = Utils.maplihg;
+  static final lightTheme = ThemeData(
+    brightness: Brightness.dark,
+    scaffoldBackgroundColor: Color(0XFFf1f1f0),
+    primaryColor: Color(0XFF5089C6),
+    accentColor: Color(0XFF5089C6),
+    cardColor: Colors.white,
+    bottomAppBarColor: Colors.white,
+    textTheme: TextTheme(
+      bodyText1: GoogleFonts.varelaRound(color: Colors.black),
+      bodyText2: GoogleFonts.varelaRound(color: Colors.white),
+    ),
+    visualDensity: VisualDensity.adaptivePlatformDensity,
+  );
 }

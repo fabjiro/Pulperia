@@ -1,5 +1,5 @@
 import 'package:iconsax/iconsax.dart';
-import 'package:pulperia/themeApp.dart';
+import 'package:pulperia/LoadAnimation.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
@@ -7,12 +7,14 @@ import 'package:sliding_sheet/sliding_sheet.dart';
 void modalViewPulperia(BuildContext context, Map<String, String> data,
     Map<String, dynamic> datapulperia) async {
   showSlidingBottomSheet(context, builder: (context) {
+    final textPrymariColor = Theme.of(context).textTheme.bodyText1!.color;
+
     return SlidingSheetDialog(
       elevation: 8,
       cornerRadius: 12,
       snapSpec: const SnapSpec(
         snap: true,
-        snappings: [0.35, .65],
+        snappings: [0.365, .65],
         positioning: SnapPositioning.relativeToAvailableSpace,
       ),
       headerBuilder: (context, state) {
@@ -22,19 +24,19 @@ void modalViewPulperia(BuildContext context, Map<String, String> data,
           decoration: BoxDecoration(
             boxShadow: <BoxShadow>[
               BoxShadow(
-                color: ThemeApp.colorTitle.withOpacity(.15),
+                color: Colors.red.withOpacity(.15),
                 blurRadius: 5.0,
                 offset: Offset(0.0, 0.5),
               )
             ],
-            color: ThemeApp.colorFondo,
+            color: Theme.of(context).scaffoldBackgroundColor,
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 15,
             ),
             child: Card(
-              color: ThemeApp.colorFondo,
+              color: Theme.of(context).scaffoldBackgroundColor,
               elevation: 0,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +49,7 @@ void modalViewPulperia(BuildContext context, Map<String, String> data,
                           text: data['distance'],
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: ThemeApp.colorPrimario,
+                            color: Theme.of(context).primaryColor,
                             fontSize: 19.sp,
                           ),
                         ),
@@ -56,7 +58,7 @@ void modalViewPulperia(BuildContext context, Map<String, String> data,
                           style: TextStyle(
                             fontSize: 16.sp,
                             fontWeight: FontWeight.w700,
-                            color: ThemeApp.colorTitle,
+                            color: textPrymariColor,
                           ),
                         ),
                       ],
@@ -67,7 +69,7 @@ void modalViewPulperia(BuildContext context, Map<String, String> data,
                     data['addres']!,
                     style: TextStyle(
                       fontSize: 8.sp,
-                      color: ThemeApp.colorTitle,
+                      color: textPrymariColor,
                     ),
                   ),
                 ],
@@ -78,29 +80,52 @@ void modalViewPulperia(BuildContext context, Map<String, String> data,
       },
       builder: (context, state) {
         return Container(
-          height: 100.h,
           width: 100.w,
-          color: ThemeApp.colorFondo,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 5,
-            ),
-            child: Card(
-              color: ThemeApp.colorFondo,
-              elevation: 0,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
+          height: 50.h,
+          color: Theme.of(context).scaffoldBackgroundColor,
+          child: Card(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            elevation: 0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: Text(
                     datapulperia['title'],
                     style: TextStyle(
                       fontSize: 18.sp,
                       fontWeight: FontWeight.bold,
-                      color: ThemeApp.colorTitle,
+                      color: textPrymariColor,
                     ),
                   ),
-                ],
-              ),
+                ),
+                LoadAnimation(
+                  child: Container(
+                    width: 100.w,
+                    height: 15.h,
+                    child: ListView.separated(
+                      itemCount: 3,
+                      scrollDirection: Axis.horizontal,
+                      separatorBuilder: (BuildContext context, int index) {
+                        return SizedBox(
+                          width: 10,
+                        );
+                      },
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          width: 30.w,
+                          height: 15.h,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Colors.grey.withOpacity(.5),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         );
@@ -112,12 +137,12 @@ void modalViewPulperia(BuildContext context, Map<String, String> data,
           decoration: BoxDecoration(
             boxShadow: <BoxShadow>[
               BoxShadow(
-                color: ThemeApp.colorTitle.withOpacity(.15),
+                color: Colors.red.withOpacity(.15),
                 blurRadius: 5.0,
                 offset: Offset(0.0, 0.5),
               )
             ],
-            color: ThemeApp.colorFondo,
+            color: Theme.of(context).scaffoldBackgroundColor,
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(

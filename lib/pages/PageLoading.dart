@@ -45,7 +45,7 @@ class ProductRecomended extends StatelessWidget {
     return Expanded(
       child: LoadAnimation(
         child: Container(
-          width: 100.h,
+          width: 100.w,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,

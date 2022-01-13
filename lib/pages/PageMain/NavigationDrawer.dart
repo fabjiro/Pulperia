@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:pulperia/models/ReactData.dart';
 import 'package:pulperia/sharedpreferences.dart';
-import 'package:pulperia/themeApp.dart';
 import 'package:sizer/sizer.dart';
 import 'package:provider/provider.dart';
 
@@ -20,7 +19,7 @@ class NavigationDrawer extends StatelessWidget {
           horizontal: 10,
           vertical: 5,
         ),
-        color: ThemeApp.colorFondo,
+        color: Theme.of(context).scaffoldBackgroundColor,
         child: SafeArea(
           child: Column(
             children: [
@@ -32,7 +31,7 @@ class NavigationDrawer extends StatelessWidget {
                       alignment: Alignment.topRight,
                       child: Card(
                         elevation: 1,
-                        color: ThemeApp.colorCard,
+                        color: Theme.of(context).cardColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),
@@ -41,7 +40,7 @@ class NavigationDrawer extends StatelessWidget {
                           icon: Icon(
                             Iconsax.arrow_left_1,
                             size: 25.sp,
-                            color: ThemeApp.colorTitle.withOpacity(.7),
+                            color: Theme.of(context).primaryColor,
                           ),
                         ),
                       ),
@@ -60,7 +59,11 @@ class NavigationDrawer extends StatelessWidget {
                         Text(
                           context.watch<ReacData>().getuser!,
                           style: TextStyle(
-                            color: Colors.grey,
+                            color: Theme.of(context)
+                                .textTheme
+                                .bodyText1!
+                                .color!
+                                .withOpacity(.6),
                             fontSize: 18.sp,
                             fontWeight: FontWeight.w600,
                           ),
@@ -85,8 +88,20 @@ class NavigationDrawer extends StatelessWidget {
                     showCupertinoDialog(
                       context: context,
                       builder: (_) => AlertDialog(
-                        title: Text("Aceptar"),
-                        content: Text("Desea cerrar sesion?"),
+                        backgroundColor:
+                            Theme.of(context).scaffoldBackgroundColor,
+                        title: Text(
+                          "Aceptar",
+                          style: TextStyle(
+                            color: Theme.of(context).textTheme.bodyText1!.color,
+                          ),
+                        ),
+                        content: Text(
+                          "Desea cerrar sesion?",
+                          style: TextStyle(
+                            color: Theme.of(context).textTheme.bodyText1!.color,
+                          ),
+                        ),
                         actionsOverflowDirection: VerticalDirection.down,
                         actions: [
                           Row(
@@ -108,6 +123,10 @@ class NavigationDrawer extends StatelessWidget {
                                       "Si",
                                       style: TextStyle(
                                         fontSize: 14.sp,
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1!
+                                            .color,
                                       ),
                                     ),
                                   ),
@@ -124,6 +143,10 @@ class NavigationDrawer extends StatelessWidget {
                                       "No",
                                       style: TextStyle(
                                         fontSize: 14.sp,
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1!
+                                            .color,
                                       ),
                                     ),
                                   ),

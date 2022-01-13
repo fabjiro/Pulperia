@@ -6,7 +6,6 @@ import 'package:pulperia/models/ReactData.dart';
 import 'package:pulperia/pages/PageLogin/textfielCustom.dart';
 import 'package:pulperia/sharedpreferences.dart';
 import 'package:pulperia/snackMessage.dart';
-import 'package:pulperia/themeApp.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:sizer/sizer.dart';
 import 'package:provider/provider.dart';
@@ -33,8 +32,44 @@ class _PageLoginState extends State<PageLogin> {
     _reacdata = context.read<ReacData>();
   }
 
+  void onpressbtnsend() async {
+    try {
+      final result = await dio.post("/api/login", data: {
+        'email': _listTextfielcontroller[0].text,
+        'password': _listTextfielcontroller[1].text,
+      });
+      _btnController.reset();
+
+      if (result.data['status'] == 200) {
+        PreferenceShared.pref!.setString('token', result.data['token']);
+        PreferenceShared.pref!.setString('user', result.data['user']);
+
+        if (result.data.containsKey('pulperia')) {
+          PreferenceShared.pref!
+              .setString('idpulperia', result.data['pulperia']);
+          _reacdata.setidpulperia = result.data['pulperia'];
+        }
+        _reacdata.setuser = result.data['user'];
+        _reacdata.settoken = result.data['token'];
+
+        Navigator.of(context).popUntil((route) => route.isFirst);
+      } else {
+        showSnack(context, result.data['smg']);
+      }
+    } catch (e) {
+      _btnController.error();
+      print(e);
+      Future.delayed(Duration(seconds: 4))
+          .then((value) => _btnController.reset());
+      showSnack(context, 'tenemos problemas');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final textColorPrymari = Theme.of(context).textTheme.bodyText1!.color;
+    final textColorSecundary = Theme.of(context).textTheme.bodyText2!.color;
+
     return Scaffold(
       body: Container(
         width: 100.w,
@@ -58,14 +93,14 @@ class _PageLoginState extends State<PageLogin> {
                         Icon(
                           Iconsax.arrow_left_2,
                           size: 25.sp,
-                          color: ThemeApp.colorTitle,
+                          color: textColorPrymari!.withOpacity(.8),
                         ),
                         Text(
                           "Acceder",
                           style: TextStyle(
                             fontSize: 20.sp,
                             fontWeight: FontWeight.w400,
-                            color: ThemeApp.colorTitle,
+                            color: textColorPrymari.withOpacity(.8),
                           ),
                         )
                       ],
@@ -84,7 +119,7 @@ class _PageLoginState extends State<PageLogin> {
                       "Accede con una de las siguientes opciones.",
                       style: TextStyle(
                         fontSize: 12.sp,
-                        color: ThemeApp.colorTitle,
+                        color: textColorPrymari.withOpacity(.8),
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -119,7 +154,7 @@ class _PageLoginState extends State<PageLogin> {
                   "-- ó --",
                   style: TextStyle(
                     fontSize: 18.sp,
-                    color: ThemeApp.colorTitle,
+                    color: textColorPrymari,
                   ),
                 ),
                 SizedBox(
@@ -144,7 +179,7 @@ class _PageLoginState extends State<PageLogin> {
                 ),
                 // btn registrar
                 RoundedLoadingButton(
-                  color: ThemeApp.colorPrimario.withOpacity(.8),
+                  color: Theme.of(context).primaryColor.withOpacity(.9),
                   width: 60.w,
                   height: 8.h,
                   borderRadius: 12,
@@ -152,41 +187,13 @@ class _PageLoginState extends State<PageLogin> {
                   child: Text(
                     'Acceder',
                     style: TextStyle(
-                      color: ThemeApp.colorTitleInvert,
+                      color: textColorSecundary,
                       fontSize: 17.sp,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   controller: _btnController,
-                  onPressed: () async {
-                    try {
-                      final result = await dio.post("/api/login", data: {
-                        'email': _listTextfielcontroller[0].text,
-                        'password': _listTextfielcontroller[1].text,
-                      });
-                      _btnController.reset();
-
-                      if (result.data['status'] == 200) {
-                        PreferenceShared.pref!
-                            .setString('token', result.data['token']);
-                        PreferenceShared.pref!
-                            .setString('user', result.data['user']);
-                        _reacdata.setuser = result.data['user'];
-                        _reacdata.settoken = result.data['token'];
-
-                        Navigator.of(context)
-                            .popUntil((route) => route.isFirst);
-                      } else {
-                        showSnack(context, result.data['smg']);
-                      }
-                    } catch (e) {
-                      _btnController.error();
-                      print(e);
-                      Future.delayed(Duration(seconds: 4))
-                          .then((value) => _btnController.reset());
-                      showSnack(context, 'tenemos problemas');
-                    }
-                  },
+                  onPressed: () => onpressbtnsend(),
                 ),
                 SizedBox(
                   height: 2.h,
@@ -198,7 +205,7 @@ class _PageLoginState extends State<PageLogin> {
                     style: TextStyle(
                       fontSize: 13.sp,
                       fontWeight: FontWeight.w400,
-                      color: ThemeApp.colorTitle,
+                      color: textColorPrymari,
                     ),
                   ),
                 )

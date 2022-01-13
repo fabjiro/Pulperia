@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pulperia/themeApp.dart';
 import 'package:sizer/sizer.dart';
 
 class SearchBtn extends StatelessWidget {
@@ -18,10 +17,16 @@ class SearchBtn extends StatelessWidget {
             width: 77.w,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: ThemeApp.colorCard,
+              color: Theme.of(context).cardColor,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey,
+                  color: (Theme.of(context).brightness == Brightness.dark)
+                      ? Theme.of(context)
+                          .textTheme
+                          .bodyText1!
+                          .color!
+                          .withOpacity(0.5)
+                      : Colors.transparent,
                   offset: Offset(0.0, 1.0), //(x,y)
                   blurRadius: 1.0,
                 ),
@@ -36,7 +41,7 @@ class SearchBtn extends StatelessWidget {
                   "¿que buscaremos?",
                   style: TextStyle(
                     fontSize: 14.sp,
-                    color: ThemeApp.colorTitle,
+                    color: Theme.of(context).textTheme.bodyText1!.color,
                   ),
                 ),
               ),

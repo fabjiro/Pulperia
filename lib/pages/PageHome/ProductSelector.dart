@@ -1,7 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:pulperia/models/ProductGenral.dart';
-import 'package:pulperia/themeApp.dart';
 import 'package:sizer/sizer.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
@@ -43,14 +42,14 @@ class ProductSelector extends StatelessWidget {
                 margin: EdgeInsets.only(left: 1.h),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(17),
-                  color: ThemeApp.colorPrimario,
+                  color: Theme.of(context).primaryColor,
                 ),
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
                     listGeneral[index].title,
                     style: TextStyle(
-                      color: ThemeApp.colorTitleInvert,
+                      color: Theme.of(context).textTheme.bodyText2!.color,
                       fontSize: 15.sp,
                     ),
                   ),

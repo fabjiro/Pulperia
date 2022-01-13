@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pulperia/themeApp.dart';
 import 'package:sizer/sizer.dart';
 
 class TextfieldCustom extends StatelessWidget {
@@ -34,7 +33,7 @@ class TextfieldCustom extends StatelessWidget {
             child: Text(
               title,
               style: TextStyle(
-                color: ThemeApp.colorTitle,
+                color: Theme.of(context).textTheme.bodyText1!.color,
                 fontSize: 16.sp,
               ),
             ),
@@ -61,11 +60,17 @@ class TextfieldCustom extends StatelessWidget {
                   controller: controller,
                   style: TextStyle(
                     fontSize: 15.5.sp,
+                    color: Theme.of(context).textTheme.bodyText2!.color,
                   ),
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     suffixIcon: Icon(
                       icono,
+                      color: Theme.of(context)
+                          .textTheme
+                          .bodyText2!
+                          .color!
+                          .withOpacity(.5),
                     ),
                   ),
                 ),

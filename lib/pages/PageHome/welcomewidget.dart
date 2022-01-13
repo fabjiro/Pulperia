@@ -5,7 +5,6 @@ import 'package:pulperia/pages/Components/dialogregister.dart';
 import 'package:pulperia/pages/Modals/ModalRegister.dart';
 import 'package:pulperia/pages/PageHome.dart';
 import 'package:pulperia/sharedpreferences.dart';
-import 'package:pulperia/themeApp.dart';
 import 'package:sizer/sizer.dart';
 
 class WelcomeWidget extends StatelessWidget {
@@ -39,7 +38,7 @@ class WelcomeWidget extends StatelessWidget {
                     text: "Hola, ",
                     style: TextStyle(
                       fontSize: 20.sp,
-                      color: ThemeApp.colorTitle,
+                      color: Theme.of(context).textTheme.bodyText1!.color,
                     ),
                     children: [
                       TextSpan(
@@ -49,7 +48,7 @@ class WelcomeWidget extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 22.sp,
-                          color: ThemeApp.colorTitle,
+                          color: Theme.of(context).textTheme.bodyText1!.color,
                         ),
                       ),
                     ],
@@ -59,10 +58,13 @@ class WelcomeWidget extends StatelessWidget {
               Text(
                 "busquemoslo!!",
                 style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w600,
-                  color: ThemeApp.colorSubTitle.withOpacity(.5),
-                ),
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context)
+                        .textTheme
+                        .bodyText1!
+                        .color!
+                        .withOpacity(.6)),
               ),
             ],
           ),

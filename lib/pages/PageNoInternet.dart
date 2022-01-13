@@ -1,7 +1,6 @@
 import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:pulperia/themeApp.dart';
 import 'package:sizer/sizer.dart';
 
 class PageNoInternet extends StatefulWidget {
@@ -36,7 +35,7 @@ class _PageNoInternetState extends State<PageNoInternet> {
               Text(
                 "Upss!! 😞",
                 style: TextStyle(
-                  color: ThemeApp.colorTitle,
+                  color: Colors.red,
                   fontSize: 18.sp,
                 ),
               ),
@@ -57,7 +56,7 @@ class _PageNoInternetState extends State<PageNoInternet> {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(14),
-                  color: ThemeApp.colorPrimario,
+                  color: Theme.of(context).primaryColor,
                 ),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
@@ -69,7 +68,7 @@ class _PageNoInternetState extends State<PageNoInternet> {
                     style: TextStyle(
                       fontSize: 17.sp,
                       fontWeight: FontWeight.w700,
-                      color: ThemeApp.colorTitleInvert,
+                      color: Colors.red,
                     ),
                   ),
                 ),

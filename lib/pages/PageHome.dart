@@ -7,7 +7,6 @@ import 'package:pulperia/models/ReactData.dart';
 import 'package:pulperia/pages/PageHome/PopularProduct.dart';
 import 'package:pulperia/pages/PageHome/ProductSelector.dart';
 import 'package:pulperia/pages/PageHome/welcomewidget.dart';
-import 'package:pulperia/themeApp.dart';
 import 'package:sizer/sizer.dart';
 import 'package:provider/provider.dart';
 
@@ -65,9 +64,13 @@ class _PageHomeState extends State<PageHome>
                     child: Text(
                       "Pulperias Cercanas",
                       style: TextStyle(
-                        color: ThemeApp.colorTitle,
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.w500,
+                        color: Theme.of(context)
+                            .textTheme
+                            .bodyText1!
+                            .color!
+                            .withOpacity(.75),
+                        fontSize: 17.5.sp,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
@@ -99,13 +102,13 @@ class CircularOption extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(50),
       ),
-      color: ThemeApp.colorCard,
+      color: Theme.of(context).cardColor,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Icon(
           icon,
           size: 23.5.sp,
-          color: ThemeApp.colorSubTitle.withOpacity(.6),
+          color: Theme.of(context).textTheme.bodyText1!.color!.withOpacity(.6),
         ),
       ),
     );

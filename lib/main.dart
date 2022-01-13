@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:pulperia/dio.dart';
 import 'package:pulperia/models/ReactData.dart';
@@ -20,16 +19,22 @@ void main() {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       statusBarColor: Colors.transparent, // transparent status bar
-      statusBarIconBrightness: ThemeApp.colorBrightness,
-      systemNavigationBarIconBrightness: Brightness.dark,
     ),
   );
+
   dio = new Dio(
-    BaseOptions(baseUrl: "https://fpulperia.herokuapp.com/"),
+    BaseOptions(baseUrl: "https://fpulperia.herokuapp.com"),
   );
   dio.interceptors.add(CookieManager(CookieJar()));
 
-  runApp(MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<ReacData>(create: (_) => ReacData()),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -41,32 +46,23 @@ class MyApp extends StatelessWidget {
         DeviceOrientation.portraitDown,
       ],
     );
-
     return Sizer(
       builder: (context, orientation, deviceType) {
-        return ChangeNotifierProvider(
-          create: (context) => ReacData(token: '', user: ''),
-          child: MaterialApp(
-            title: 'Pulperia',
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-              scaffoldBackgroundColor: ThemeApp.colorFondo,
-              primaryColor: ThemeApp.colorPrimario,
-              accentColor: ThemeApp.colorPrimario,
-              visualDensity: VisualDensity.adaptivePlatformDensity,
-              // ignore: deprecated_member_use
-              textTheme: TextTheme(bodyText1: GoogleFonts.varelaRound()),
-            ),
-            initialRoute: 'main',
-            routes: {
-              'main': (context) => PageMain(),
-              'login': (context) => PageLogin(),
-              'register': (context) => PGU.PageRegisterUser(),
-              'registerpulperia': (context) => PGR.PageRegisterPulperia(),
-              'welcome': (context) => PageWelcome(),
-              'opt': (context) => PageOTP(),
-            },
-          ),
+        return MaterialApp(
+          title: 'Pulperia',
+          debugShowCheckedModeBanner: true,
+          themeMode: ThemeMode.system,
+          theme: MyThemes.lightTheme,
+          darkTheme: MyThemes.darkTheme,
+          initialRoute: 'main',
+          routes: {
+            'main': (context) => PageMain(),
+            'login': (context) => PageLogin(),
+            'register': (context) => PGU.PageRegisterUser(),
+            'registerpulperia': (context) => PGR.PageRegisterPulperia(),
+            'welcome': (context) => PageWelcome(),
+            'opt': (context) => PageOTP(),
+          },
         );
       },
     );

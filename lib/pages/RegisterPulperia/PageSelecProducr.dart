@@ -7,7 +7,6 @@ import 'package:pulperia/models/ProductGenral.dart';
 import 'package:pulperia/models/ProductSpecific.dart';
 import 'package:pulperia/models/ReactData.dart';
 import 'package:pulperia/sharedpreferences.dart';
-import 'package:pulperia/themeApp.dart';
 import 'package:sizer/sizer.dart';
 import 'package:provider/provider.dart';
 
@@ -70,7 +69,6 @@ class _PageSelecProductState extends State<PageSelecProduct> {
           child: FloatingActionButton(
             onPressed: () async {
               List<Map<String, dynamic>> data = [];
-              print(dataRegisterProfile);
               if (selectedProducts.length > 2) {
                 selectedProducts.forEach((key, value) {
                   List<String> temdata = [];
@@ -154,14 +152,14 @@ class ContainerProductSelector extends StatelessWidget {
                   productGeneral.title,
                   style: TextStyle(
                     fontSize: 14.sp,
-                    color: ThemeApp.colorTitle.withOpacity(.5),
+                    color: Colors.red.withOpacity(.5),
                   ),
                 ),
                 Text(
                   listProductSpecific.length.toString(),
                   style: TextStyle(
                     fontSize: 14.sp,
-                    color: ThemeApp.colorTitle.withOpacity(.5),
+                    color: Colors.red.withOpacity(.5),
                   ),
                 ),
               ],
@@ -240,22 +238,27 @@ class _FilterChipWidgetState extends State<FilterChipWidget> {
         widget.title,
         style: TextStyle(
           color: isSelected
-              ? ThemeApp.colorPrimario
-              : ThemeApp.colorTitle.withOpacity(.5),
+              ? Theme.of(context).primaryColor
+              : Colors.red.withOpacity(.5),
           fontSize: 12.sp,
         ),
       ),
-      backgroundColor: ThemeApp.colorCard,
-      selectedColor: ThemeApp.colorCard,
-      checkmarkColor: ThemeApp.colorPrimario,
+      backgroundColor: Theme.of(context).cardColor,
+      selectedColor: Theme.of(context).cardColor,
+      checkmarkColor: Theme.of(context).primaryColor,
       shape: isSelected
           ? RoundedRectangleBorder(
-              side: BorderSide(color: ThemeApp.colorPrimario, width: 1),
+              side: BorderSide(
+                color: Theme.of(context).primaryColor,
+                width: 1,
+              ),
               borderRadius: BorderRadius.circular(12),
             )
           : RoundedRectangleBorder(
               side: BorderSide(
-                  color: ThemeApp.colorTitle.withOpacity(.2), width: 1),
+                color: Colors.red.withOpacity(.2),
+                width: 1,
+              ),
               borderRadius: BorderRadius.circular(12),
             ),
       selected: isSelected,

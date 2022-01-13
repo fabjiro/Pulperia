@@ -4,7 +4,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:location/location.dart';
 import 'package:pulperia/data.dart';
 import 'package:pulperia/pages/PageLogin/textfielCustom.dart';
-import 'package:pulperia/themeApp.dart';
+import 'package:pulperia/pages/PageMap/utils.dart';
 import 'package:sizer/sizer.dart';
 
 class PageUbication extends StatefulWidget {
@@ -57,7 +57,7 @@ class _PageUbicationState extends State<PageUbication> {
                 style: TextStyle(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.bold,
-                  color: ThemeApp.colorPrimario,
+                  color: Theme.of(context).primaryColor,
                 ),
               ),
             ),
@@ -69,7 +69,7 @@ class _PageUbicationState extends State<PageUbication> {
                 color: Colors.transparent,
                 border: Border.all(
                   width: 4,
-                  color: ThemeApp.colorPrimario,
+                  color: Theme.of(context).primaryColor,
                 ),
                 borderRadius: BorderRadius.circular(500),
               ),
@@ -137,13 +137,13 @@ class _PageUbicationState extends State<PageUbication> {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
-                  color: ThemeApp.colorPrimario,
+                  color: Theme.of(context).primaryColor,
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Icon(
                     Iconsax.arrow_right_2,
-                    color: ThemeApp.colorTitleInvert,
+                    color: Colors.red,
                     size: 35.sp,
                   ),
                 ),
@@ -182,7 +182,7 @@ class _PageUbicationState extends State<PageUbication> {
   void _mapcontroller(GoogleMapController controller) async {
     _mapController = controller;
     _mylocation = await _location.getLocation();
-    controller.setMapStyle(ThemeApp.mapStyle);
+    controller.setMapStyle(Utils.maplihg);
     controller.animateCamera(
       CameraUpdate.newLatLngZoom(
         LatLng(

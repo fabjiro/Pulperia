@@ -10,8 +10,8 @@ import 'package:pulperia/pages/PageMap/ModalViewPulperia.dart';
 import 'package:pulperia/pages/PageMap/SearchBtn.dart';
 import 'package:pulperia/pages/PageMap/functions%20map.dart';
 import 'package:provider/provider.dart';
+import 'package:pulperia/pages/PageMap/utils.dart';
 import 'package:pulperia/sharedpreferences.dart';
-import 'package:pulperia/themeApp.dart';
 import 'package:sizer/sizer.dart';
 
 class PageMap extends StatefulWidget {
@@ -115,7 +115,7 @@ class _PageMapState extends State<PageMap> with AutomaticKeepAliveClientMixin {
             onTap: () => mylocation(),
             child: Card(
               elevation: 5,
-              color: ThemeApp.colorTitleInvert,
+              color: Theme.of(context).cardColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50.0),
               ),
@@ -123,7 +123,7 @@ class _PageMapState extends State<PageMap> with AutomaticKeepAliveClientMixin {
                 padding: const EdgeInsets.all(10.0),
                 child: Icon(
                   Iconsax.location,
-                  color: ThemeApp.colorPrimario,
+                  color: Theme.of(context).primaryColor,
                 ),
               ),
             ),
@@ -140,7 +140,7 @@ class _PageMapState extends State<PageMap> with AutomaticKeepAliveClientMixin {
             },
             child: Card(
               elevation: 5,
-              color: ThemeApp.colorTitleInvert,
+              color: Theme.of(context).cardColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50.0),
               ),
@@ -148,7 +148,7 @@ class _PageMapState extends State<PageMap> with AutomaticKeepAliveClientMixin {
                 padding: const EdgeInsets.all(10.0),
                 child: Icon(
                   Iconsax.map_1,
-                  color: ThemeApp.colorPrimario,
+                  color: Theme.of(context).primaryColor,
                 ),
               ),
             ),
@@ -162,7 +162,11 @@ class _PageMapState extends State<PageMap> with AutomaticKeepAliveClientMixin {
 
   void mapCreate(GoogleMapController controller) async {
     _mapController = controller;
-    controller.setMapStyle(ThemeApp.mapStyle); //map style
+    controller.setMapStyle(
+      (Theme.of(context).brightness == Brightness.dark)
+          ? Utils.maplihg
+          : Utils.mapDark,
+    ); //map style
     _mylocation = await _location.getLocation();
     // _showpulperias();
     mylocation();
